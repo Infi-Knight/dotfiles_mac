@@ -1,14 +1,23 @@
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
+Plug 'pangloss/vim-javascript'    " JavaScript support
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'pangloss/vim-javascript'
+"in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+Plug 'peitalin/vim-jsx-typescript' " TSX syntax
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+
+" styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' } 
 
 " Initialize plugin system
 call plug#end()
+
+" Uncomment these two lines if js, jsx, ts, tsx syntax highlighting goes out
+" of sync. 
+" autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+" autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 syntax on

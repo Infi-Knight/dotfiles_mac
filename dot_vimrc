@@ -185,3 +185,5 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 syntax on
 set number
+set ruler
+set mouse=a

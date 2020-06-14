@@ -15,5 +15,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "vetur.format.defaultFormatter.html": "prettier"
 }

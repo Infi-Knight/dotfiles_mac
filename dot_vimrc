@@ -11,6 +11,7 @@ Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'peitalin/vim-jsx-typescript' " TSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'posva/vim-vue' " vue syntax
+Plug 'mattn/emmet-vim' " emmet
 
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } 
@@ -32,7 +33,7 @@ autocmd vimenter * colorscheme gruvbox
 " CoC extensions
 " You need to install eslint-plugin-vue and similar to take advantage of
 " liniting
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-vetur']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-vetur', 'coc-markdownlint', 'coc-actions']
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']

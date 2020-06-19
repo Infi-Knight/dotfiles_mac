@@ -5,7 +5,9 @@
     "typescript",
     "typescriptreact",
     "vue",
-    "json"
+    "json",
+    "markdown",
+    "md"
   ],
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
@@ -15,5 +17,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "vetur.format.defaultFormatter.html": "prettier"
 }

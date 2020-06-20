@@ -13,6 +13,10 @@ Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
 Plug 'ryanoasis/vim-devicons'
 
+
+" code snippets
+Plug 'honza/vim-snippets'
+
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
@@ -43,6 +47,7 @@ let g:coc_global_extensions = [
 	\'coc-css',
 	\'coc-python',
 	\'coc-markdownlint',
+	\'coc-snippets',
 	\'coc-explorer']
 
 
@@ -87,7 +92,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1

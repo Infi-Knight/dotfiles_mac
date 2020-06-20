@@ -11,6 +11,7 @@ Plug 'peitalin/vim-jsx-typescript' " TSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
+Plug 'ryanoasis/vim-devicons'
 
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -31,7 +32,16 @@ autocmd vimenter * colorscheme dracula
 " CoC extensions
 " You need to install eslint-plugin-vue and similar to take advantage of
 " liniting
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-vetur', 'coc-markdownlint', 'coc-actions', 'coc-pairs']
+let g:coc_global_extensions = [
+	\'coc-tsserver', 
+	\'coc-json', 
+	\'coc-vetur', 
+	\'coc-markdownlint', 
+	\'coc-actions', 
+	\'coc-pairs', 
+	\'coc-html', 
+	\'coc-css',
+	\'coc-explorer']
 
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -191,6 +201,9 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" coc-explorer
+:nmap <space>e :CocCommand explorer<CR>
 
 set termguicolors
 " clipboard

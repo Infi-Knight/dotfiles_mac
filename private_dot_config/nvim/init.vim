@@ -31,7 +31,7 @@ autocmd vimenter * colorscheme dracula
 " CoC extensions
 " You need to install eslint-plugin-vue and similar to take advantage of
 " liniting
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-vetur', 'coc-markdownlint', 'coc-actions']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-vetur', 'coc-markdownlint', 'coc-actions', 'coc-pairs']
 
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')

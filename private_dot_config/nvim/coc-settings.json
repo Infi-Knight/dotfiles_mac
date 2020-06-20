@@ -20,5 +20,6 @@
   ],
   "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier",
-  "explorer.icon.enableNerdfont": true
+  "explorer.icon.enableNerdfont": true,
+  "python.jediEnabled": false
 }

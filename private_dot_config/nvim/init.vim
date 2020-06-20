@@ -41,6 +41,7 @@ let g:coc_global_extensions = [
 	\'coc-pairs', 
 	\'coc-html', 
 	\'coc-css',
+	\'coc-python',
 	\'coc-explorer']
 
 

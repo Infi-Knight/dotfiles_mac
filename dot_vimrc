@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox' " grubox theme - https://github.com/morhetz/gruvbox 
+Plug 'dracula/vim', { 'as': 'dracula' } 
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 
@@ -23,7 +23,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " colorscheme settings
-autocmd vimenter * colorscheme gruvbox
+autocmd vimenter * colorscheme dracula
 
 " Uncomment these two lines if js, jsx, ts, tsx syntax highlighting goes out
 " of sync. 

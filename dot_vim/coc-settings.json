@@ -18,5 +18,6 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier"
 }

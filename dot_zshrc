@@ -307,13 +307,6 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   ------------------------------------------------------------
     export BLOCKSIZE=1k
 
-
-# Setting PATH for Python 3.7
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
-export PATH
-
-
 # RAVI MONGODB INSTALLATION
 export MONGO_PATH=/usr/local/mongodb
 export PATH=$PATH:$MONGO_PATH/bin
@@ -399,3 +392,16 @@ eval "$(zoxide init zsh)"
 
 # fnm
 eval "$(fnm env --multi)"
+
+# better python version management using pyenv
+# read https://github.com/pyenv/pyenv#homebrew-on-macos and
+# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+# also read:
+# https://opensource.com/article/19/5/python-3-default-mac
+# https://opensource.com/article/20/4/pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+PATH=$(pyenv root)/shims:$PATH

@@ -1,7 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
-Plug 'dracula/vim', { 'as': 'dracula' }
 
 "in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -13,6 +12,8 @@ Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
 Plug 'ryanoasis/vim-devicons'
 
+" colorscheme
+Plug 'joshdick/onedark.vim'
 
 " code snippets
 Plug 'honza/vim-snippets'
@@ -27,7 +28,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " colorscheme settings
-autocmd vimenter * colorscheme dracula
+autocmd vimenter * colorscheme onedark
+
 " Uncomment these two lines if js, jsx, ts, tsx syntax highlighting goes out
 " of sync.
 " autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
@@ -59,8 +61,23 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+
+" Spaces & Tabs {{{
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
+" }}} Spaces & Tabs
+
+
+" UI Config {{{
 " TextEdit might fail if hidden is not set.
 set hidden
+set number                   " show line number
+set cursorline               " highlight current line
+" }}} UI Config
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -215,6 +232,5 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 set termguicolors
 " clipboard
 set clipboard+=unnamedplus
-set number
 set mouse=a
 syntax on

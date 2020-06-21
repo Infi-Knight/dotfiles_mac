@@ -22,5 +22,7 @@
   "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier",
   "explorer.icon.enableNerdfont": true,
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
+  "python.analysis.diagnosticPublishDelay": 300,
+  "diagnostic.virtualText": true
 }

@@ -11,7 +11,7 @@ Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
 Plug 'ryanoasis/vim-devicons'
-
+Plug 'tpope/vim-commentary' " comment stuff  
 " colorscheme
 Plug 'joshdick/onedark.vim'
 
@@ -50,7 +50,8 @@ let g:coc_global_extensions = [
 	\'coc-python',
 	\'coc-markdownlint',
 	\'coc-snippets',
-	\'coc-explorer']
+	\'coc-explorer',
+	\'coc-pyright']
 
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -234,3 +235,8 @@ set termguicolors
 set clipboard+=unnamedplus
 set mouse=a
 syntax on
+
+" TODO: configure leader and space key correctly
+" TODO: see if ale can be correctly configured with coc to provide stuff like
+" error squiggles
+" TODO: remove trailing whitespace,(possibley using ale)

@@ -1,10 +1,11 @@
+" Remap leader key to ,
+let g:mapleader=','
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
-
 "in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
 Plug 'leafgarland/typescript-vim' " TypeScript syntax
-
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'peitalin/vim-jsx-typescript' " TSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
@@ -12,30 +13,27 @@ Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary' " comment stuff  
-" colorscheme
-Plug 'joshdick/onedark.vim'
-
-" code snippets
-Plug 'honza/vim-snippets'
-
+Plug 'vim-airline/vim-airline' " statusline
+Plug 'tpope/vim-fugitive'
+Plug 'mhartington/oceanic-next' " colorscheme
+Plug 'honza/vim-snippets' " code snippets
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Initialize plugin system
 call plug#end()
 
 " colorscheme settings
-autocmd vimenter * colorscheme onedark
+autocmd vimenter * colorscheme OceanicNext
 
 " Uncomment these two lines if js, jsx, ts, tsx syntax highlighting goes out
 " of sync.
 " autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 " autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-" CoC extensions
+" CoC extensions {{{
 " You need to install eslint-plugin-vue and similar to take advantage of
 " liniting
 let g:coc_global_extensions = [
@@ -51,6 +49,7 @@ let g:coc_global_extensions = [
 	\'coc-markdownlint',
 	\'coc-snippets',
 	\'coc-explorer',
+	\'coc-git',
 	\'coc-pyright']
 
 
@@ -61,7 +60,7 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
-
+" }}} CoC extensions
 
 " Spaces & Tabs {{{
 set tabstop=4       " number of visual spaces per TAB
@@ -78,7 +77,16 @@ set copyindent      " copy indent from the previous line
 set hidden
 set number                   " show line number
 set cursorline               " highlight current line
+set noshowmode " Don't dispay mode in command line (airilne already shows it)
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
 " }}} UI Config
+
+" airline {{{
+let g:airline_powerline_fonts = 1 " make sure to install patched powerline fonts
+let g:airline_theme='oceanicnext'
+let g:airline_extensions = ['branch', 'hunks', 'coc'] " Enable extensions
+" }}} airline
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -207,7 +215,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -236,7 +244,6 @@ set clipboard+=unnamedplus
 set mouse=a
 syntax on
 
-" TODO: configure leader and space key correctly
 " TODO: see if ale can be correctly configured with coc to provide stuff like
 " error squiggles
 " TODO: remove trailing whitespace,(possibley using ale)

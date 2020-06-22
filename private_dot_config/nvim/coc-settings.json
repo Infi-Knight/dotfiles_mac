@@ -25,5 +25,7 @@
   "python.jediEnabled": false,
   "python.analysis.diagnosticPublishDelay": 300,
   "python.formatting.provider": "autopep8",
-  "diagnostic.virtualText": true
+  "diagnostic.errorSign": "❌",
+  "diagnostic.warningSign": "⚠️",
+  "diagnostic.infoSign": "ℹ️"
 }

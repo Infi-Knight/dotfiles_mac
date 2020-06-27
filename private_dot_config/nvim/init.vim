@@ -18,6 +18,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhartington/oceanic-next' " colorscheme
 Plug 'honza/vim-snippets' " code snippets
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
+Plug 'junegunn/fzf.vim'
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
@@ -85,6 +86,22 @@ set splitright
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 " }}} UI Config
+
+" fzf {{{
+" displays fzf in a floating window when run in a modern version of Vim or Neovim
+if has('nvim-0.4.0') || has("patch-8.2.0191")
+    let g:fzf_layout = { 'window': {
+                \ 'width': 0.9,
+                \ 'height': 0.7,
+                \ 'highlight': 'Comment',
+                \ 'rounded': v:false } }
+else
+    let g:fzf_layout = { "window": "silent botright 16split enew" }
+endif
+
+" Quickly bring up the fuzzy file finder
+nnoremap <silent> <Leader><Space> :Files<CR>
+" }}} fzf
 
 " Navigation {{{
 " We can use different key mappings for easy navigation between splits to 

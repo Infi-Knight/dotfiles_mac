@@ -27,5 +27,9 @@
   "python.formatting.provider": "autopep8",
   "diagnostic.errorSign": "❌",
   "diagnostic.warningSign": "⚠️",
-  "diagnostic.infoSign": "ℹ️"
+  "diagnostic.infoSign": "ℹ️",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html"
+  }
 }

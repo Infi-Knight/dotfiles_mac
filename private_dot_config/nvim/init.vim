@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline' " statusline
 Plug 'tpope/vim-fugitive'
 Plug 'mhartington/oceanic-next' " colorscheme
 Plug 'honza/vim-snippets' " code snippets
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
@@ -50,6 +51,7 @@ let g:coc_global_extensions = [
 	\'coc-snippets',
 	\'coc-explorer',
 	\'coc-git',
+	\'coc-emmet',
 	\'coc-pyright']
 
 
@@ -73,14 +75,25 @@ set copyindent      " copy indent from the previous line
 
 
 " UI Config {{{
-" TextEdit might fail if hidden is not set.
-set hidden
+set hidden " TextEdit might fail if hidden is not set.
 set number                   " show line number
 set cursorline               " highlight current line
 set noshowmode " Don't dispay mode in command line (airilne already shows it)
+" Open new split panes to right and bottom, which feels more natural than Vim’s default
+set splitbelow
+set splitright
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 " }}} UI Config
+
+" Navigation {{{
+" We can use different key mappings for easy navigation between splits to 
+" save a keystroke. So instead of ctrl-w then j, it’s just ctrl-j
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" }}}
 
 " airline {{{
 let g:airline_powerline_fonts = 1 " make sure to install patched powerline fonts

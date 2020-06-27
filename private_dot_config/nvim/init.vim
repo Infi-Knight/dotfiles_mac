@@ -101,6 +101,17 @@ endif
 
 " Quickly bring up the fuzzy file finder
 nnoremap <silent> <Leader><Space> :Files<CR>
+
+" following commands (c, bc) depend upon vim-fugitive
+" The :Commits and :BCommits commands are used to explore a project’s Git history. 
+" The :BCommits command will limit exploration to the history associated with the 
+" current buffer whilst the :Commits command will explore the complete history of the project.
+let g:fzf_commits_log_options = '--graph --color=always
+  \ --format="%C(yellow)%h%C(red)%d%C(reset)
+  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
+
+nnoremap <silent> <Leader>c  :Commits<CR>
+nnoremap <silent> <Leader>bc :BCommits<CR>
 " }}} fzf
 
 " Navigation {{{

@@ -405,3 +405,15 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 PATH=$(pyenv root)/shims:$PATH
+
+# make sure that bat is installed: https://github.com/sharkdp/bat
+alias cat='bat'
+export BAT_THEME="TwoDark"
+
+# fzf settings
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='
+  --height 75% --multi --reverse
+  --bind ctrl-f:page-down,ctrl-b:page-up
+'

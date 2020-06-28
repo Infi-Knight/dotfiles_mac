@@ -133,11 +133,6 @@ nnoremap <C-H> <C-W><C-H>
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-" for more configuration options see https://github.com/plasticboy/vim-markdown
-" set to 1, nvim will open the preview window after entering the markdown buffer
-" default: 0
-let g:mkdp_auto_start = 1
-
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},

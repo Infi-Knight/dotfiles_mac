@@ -19,16 +19,18 @@ Plug 'mhartington/oceanic-next' " colorscheme
 Plug 'honza/vim-snippets' " code snippets
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'
-
 Plug 'junegunn/goyo.vim' " distraction free writing in vim
 Plug 'junegunn/limelight.vim'
+" The tabular plugin must come before vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown' " needs further customizations
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Initialize plugin system
-call plug#end()
+call plug#end() " Initialize plugin system
 
 " colorscheme settings
 autocmd vimenter * colorscheme OceanicNext
@@ -79,10 +81,10 @@ set copyindent      " copy indent from the previous line
 
 
 " UI Config {{{
-set hidden " TextEdit might fail if hidden is not set.
+set hidden 		     " TextEdit might fail if hidden is not set.
 set number                   " show line number
 set cursorline               " highlight current line
-set noshowmode " Don't dispay mode in command line (airilne already shows it)
+set noshowmode 		     " Don't dispay mode in command line (airilne already shows it)
 " Open new split panes to right and bottom, which feels more natural than Vim’s default
 set splitbelow
 set splitright
@@ -124,14 +126,30 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" }}}
+" fzf }}}
 
 " Markdown {{{
-
-
 " limelight's Goyo.vim integration
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" for more configuration options see https://github.com/plasticboy/vim-markdown
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'top',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false
+    \ }
 " Markdown }}}
 
 " airline {{{

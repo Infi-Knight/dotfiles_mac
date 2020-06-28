@@ -19,6 +19,9 @@ Plug 'mhartington/oceanic-next' " colorscheme
 Plug 'honza/vim-snippets' " code snippets
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'
+
+Plug 'junegunn/goyo.vim' " distraction free writing in vim
+Plug 'junegunn/limelight.vim'
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
@@ -122,6 +125,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " }}}
+
+" Markdown {{{
+
+
+" limelight's Goyo.vim integration
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+" Markdown }}}
 
 " airline {{{
 let g:airline_powerline_fonts = 1 " make sure to install patched powerline fonts

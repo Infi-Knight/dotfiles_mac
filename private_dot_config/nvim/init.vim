@@ -82,7 +82,19 @@ set copyindent      " copy indent from the previous line
 
 " UI Config {{{
 set hidden 		     " TextEdit might fail if hidden is not set.
-set number                   " show line number
+
+" both absolute and relative line numbers are enabled by default,
+" which produces “hybrid” line numbers. When entering insert mode,
+" relative line numbers are turned off, leaving absolute line numbers turned on. 
+" This also happens when the buffer loses focus, so you can glance back at it
+" to see which absolute line you were working on if you need to.
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 set cursorline               " highlight current line
 set noshowmode 		     " Don't dispay mode in command line (airilne already shows it)
 " Open new split panes to right and bottom, which feels more natural than Vim’s default

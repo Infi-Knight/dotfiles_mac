@@ -19,6 +19,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "html.autoClosingTags": true,
   "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier",
   "explorer.icon.enableNerdfont": true,

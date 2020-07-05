@@ -12,7 +12,6 @@ Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-commentary' " comment stuff  
 Plug 'vim-airline/vim-airline' " statusline
 Plug 'tpope/vim-fugitive'
 Plug 'mhartington/oceanic-next' " colorscheme
@@ -21,6 +20,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim' " distraction free writing in vim
 Plug 'junegunn/limelight.vim'
+
+Plug 'tpope/vim-commentary' " comment stuff  
+Plug 'kana/vim-textobj-user' " defining your own text objects
+Plug 'tpope/vim-surround' " text objects for surrounding text: ds, cs, ys
+Plug 'tpope/vim-repeat' " provides repeat functionality for some vim plugins like vim-surround
+Plug 'michaeljsmith/vim-indent-object' " Indent text object - ai, ii, aI, iI
+Plug 'kana/vim-textobj-entire' " text object for entire buffer - ae, ai
+Plug 'kana/vim-textobj-line' " text object for a line - al, il
+
 " The tabular plugin must come before vim-markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown' " needs further customizations
@@ -29,6 +37,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end() " Initialize plugin system
 

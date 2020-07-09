@@ -5,7 +5,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 "in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
-Plug 'leafgarland/typescript-vim' " TypeScript syntax
+" Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'HerringtonDarkholme/yats.vim' " Typescript syntax. For now yats seems better
 Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 Plug 'peitalin/vim-jsx-typescript' " TSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
@@ -87,7 +88,6 @@ set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
 " }}} Spaces & Tabs
-
 
 " UI Config {{{
 set hidden 		     " TextEdit might fail if hidden is not set.

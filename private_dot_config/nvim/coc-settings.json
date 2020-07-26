@@ -19,6 +19,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "typescript.preferences.importModuleSpecifier": "relative",
   "html.autoClosingTags": true,
   "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier",

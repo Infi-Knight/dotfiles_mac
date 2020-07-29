@@ -10,6 +10,7 @@
     "markdown",
     "md"
   ],
+  "go.enable": false,
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
   "eslint.autoFixOnSave": true,
@@ -19,6 +20,16 @@
     "typescript",
     "typescriptreact"
   ],
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    }
+  },
   "typescript.preferences.importModuleSpecifier": "relative",
   "html.autoClosingTags": true,
   "eslint.nodePath": "./node_modules",

@@ -3,6 +3,7 @@ let g:mapleader=','
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 "in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
 " Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -63,6 +64,7 @@ let g:coc_global_extensions = [
 	\'coc-html', 
 	\'coc-css',
 	\'coc-python',
+    \'coc-go',
 	\'coc-markdownlint',
 	\'coc-snippets',
 	\'coc-explorer',
@@ -103,6 +105,9 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
+" https://github.com/govim/govim/wiki/vimrc-tips#-fix-why-does-vim-flicker-when-i-enter-normal-mode-leave-exit-insert-mode
+" set timeoutlen=1000 ttimeoutlen=0
 
 set cursorline               " highlight current line
 set noshowmode 		     " Don't dispay mode in command line (airilne already shows it)
@@ -190,6 +195,13 @@ let g:mkdp_preview_options = {
     \ 'content_editable': v:false
     \ }
 " Markdown }}}
+
+" Golang {{{
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+let g:go_code_completion_enabled = 0 " disable code completion with omnifunc
+let g:go_updatetime = 0 " use the value from 'updatetime'
+let g:go_doc_keywordprg_enabled = 0 " use floating window instead of a bottom split
+" }}} Golang
 
 " airline {{{
 let g:airline_powerline_fonts = 1 " make sure to install patched powerline fonts

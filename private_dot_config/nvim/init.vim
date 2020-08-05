@@ -70,6 +70,7 @@ let g:coc_global_extensions = [
 	\'coc-explorer',
 	\'coc-git',
 	\'coc-emmet',
+    \'coc-spell-checker',
 	\'coc-pyright']
 
 

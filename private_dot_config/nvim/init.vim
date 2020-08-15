@@ -132,7 +132,7 @@ else
 endif
 
 " Quickly bring up the fuzzy file finder
-nnoremap <silent> <Leader><Space> :Files<CR>
+nnoremap <silent> <Space>f :Files<CR>
 
 " following commands (c, bc) depend upon vim-fugitive
 " The :Commits and :BCommits commands are used to explore a project’s Git history. 
@@ -166,7 +166,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-nnoremap <Leader>rg :RG<CR>
+nnoremap <Space>g :RG<CR>
 " }}} fzf
 
 " Navigation {{{

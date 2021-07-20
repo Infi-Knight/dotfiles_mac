@@ -361,12 +361,12 @@ eval "$(fnm env --multi)"
 # https://opensource.com/article/19/5/python-3-default-mac
 # https://opensource.com/article/20/4/pyenv
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-# PATH=$(pyenv root)/shims:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+PATH=$(pyenv root)/shims:$PATH
 
 # make sure that bat is installed: https://github.com/sharkdp/bat
 alias cat='bat'

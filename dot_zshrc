@@ -308,45 +308,20 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
     export BLOCKSIZE=1k
 
 # RAVI MONGODB INSTALLATION
-export MONGO_PATH=/usr/local/mongodb
-export PATH=$PATH:$MONGO_PATH/bin
+# export MONGO_PATH=/usr/local/mongodb
+# export PATH=$PATH:$MONGO_PATH/bin
 
 
-#temporary path
-#export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-
-export CLASSPATH=$CLASSPATH:~/algs4/algs4.jar
+# temporary path
+# export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+# export CLASSPATH=$CLASSPATH:~/algs4/algs4.jar
 
 
 # ANDROID STUDIO
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# USER LEVEL RUBY GEMS
-export PATH="/Users/ravisoni/.gem/ruby/2.5.0/bin:$PATH"
-
-# added by travis gem
-[ -f /Users/ravisoni/.travis/travis.sh ] && source /Users/ravisoni/.travis/travis.sh
-
-
-# flutter path
-export PATH=$PATH:/Users/ravisoni/ravi/development/flutter/bin
-
-#metasploit
-PATH=$PATH:/opt/metasploit-framework/bin
-export PATH=$PATH:/opt/metasploit-framework/bin
-
-# ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
-export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/tools/bin
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # git alias
 alias gs='git status'
@@ -355,43 +330,30 @@ alias ga="git add"
 alias gc="git commit"
 
 # mysql path
-export PATH=$PATH:/usr/local/mysql/bin/
+# export PATH=$PATH:/usr/local/mysql/bin/
 
-#haskell
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+# haskell
+# export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 #GOPATH
-export GOPATH=$HOME/go
-export PATH=$PATH:$(go env GOPATH)/bin
+# export GOPATH=$HOME/go
+# export PATH=$PATH:$(go env GOPATH)/bin
 
 #JULIA
-export PATH=$PATH:/Applications/Julia-1.1.app/Contents/Resources/julia/bin/
+# export PATH=$PATH:/Applications/Julia-1.1.app/Contents/Resources/julia/bin/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ravisoni/exec -l /bin/zsh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ravisoni/exec -l /bin/zsh/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ravisoni/exec -l /bin/zsh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ravisoni/exec -l /bin/zsh/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Love2D
-alias love="/Applications/love.app/Contents/MacOS/love"
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/ravisoni/SECRET_service_account.json"
 
 alias lg='lazygit'
 
 export PATH=/Users/ravisoni/.local/bin:$PATH
 
-#psql
-export PATH=/Library/PostgreSQL/12/bin:$PATH
-export PSQL_EDITOR="code -w"
-
 # zoxide
 eval "$(zoxide init zsh)"
 
 # fnm
-eval "$(fnm env --multi)"
+# eval "$(fnm env --multi)"
 
 # better python version management using pyenv
 # read https://github.com/pyenv/pyenv#homebrew-on-macos and
@@ -399,12 +361,13 @@ eval "$(fnm env --multi)"
 # also read:
 # https://opensource.com/article/19/5/python-3-default-mac
 # https://opensource.com/article/20/4/pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-PATH=$(pyenv root)/shims:$PATH
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+# PATH=$(pyenv root)/shims:$PATH
 
 # make sure that bat is installed: https://github.com/sharkdp/bat
 alias cat='bat'

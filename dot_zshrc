@@ -352,7 +352,7 @@ export PATH=/Users/ravisoni/.local/bin:$PATH
 eval "$(zoxide init zsh)"
 
 # fnm
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 
 # better python version management using pyenv
 # read https://github.com/pyenv/pyenv#homebrew-on-macos and

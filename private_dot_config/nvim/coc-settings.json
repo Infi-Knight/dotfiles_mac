@@ -10,6 +10,7 @@
     "markdown",
     "md"
   ],
+  "prettier.onlyUseLocalVersion": true,
   "go.enable": false,
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,

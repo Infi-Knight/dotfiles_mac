@@ -53,5 +53,13 @@
         "javascript": "javascriptreact",
         "vue-html": "html"
     },
-    "snippets.loadFromExtensions": true
+    "snippets.loadFromExtensions": true,
+    "snippets.extends": {
+        "javascriptreact": [
+            "javascript"
+        ],
+        "typescript": [
+            "javascript"
+        ]
+    }
 }

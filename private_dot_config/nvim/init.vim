@@ -49,6 +49,11 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end() " Initialize plugin system
 
+" ES7 React/Redux/GraphQL/React-Native snippets
+" https://marketplace.visualstudio.com/itemdetails?itemName=dsznajder.es7-react-js-snippets
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
+
+
 " colorscheme settings
 autocmd vimenter * colorscheme OceanicNext
 

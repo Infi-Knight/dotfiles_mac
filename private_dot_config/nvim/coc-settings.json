@@ -1,49 +1,57 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "python",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "json",
-    "markdown",
-    "md"
-  ],
-  "prettier.onlyUseLocalVersion": true,
-  "go.enable": false,
-  "tsserver.formatOnType": true,
-  "coc.preferences.formatOnType": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    }
-  },
-  "typescript.preferences.importModuleSpecifier": "relative",
-  "html.autoClosingTags": true,
-  "eslint.nodePath": "./node_modules",
-  "vetur.format.defaultFormatter.html": "prettier",
-  "explorer.icon.enableNerdfont": true,
-  "python.jediEnabled": false,
-  "python.analysis.diagnosticPublishDelay": 300,
-  "python.formatting.provider": "autopep8",
-  "diagnostic.errorSign": "❌",
-  "diagnostic.warningSign": "⚠️",
-  "diagnostic.infoSign": "ℹ️",
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "vue-html": "html"
-  }
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "python",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "json",
+        "markdown",
+        "md"
+    ],
+    "prettier.onlyUseLocalVersion": true,
+    "go.enable": false,
+    "tsserver.formatOnType": true,
+    "coc.preferences.formatOnType": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        }
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "html.autoClosingTags": true,
+    "eslint.nodePath": "./node_modules",
+    "vetur.format.defaultFormatter.html": "prettier",
+    "explorer.icon.enableNerdfont": true,
+    "python.jediEnabled": false,
+    "python.analysis.diagnosticPublishDelay": 300,
+    "python.formatting.provider": "autopep8",
+    "diagnostic.errorSign": "❌",
+    "diagnostic.warningSign": "⚠️",
+    "diagnostic.infoSign": "ℹ️",
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html"
+    },
+    "snippets.loadFromExtensions": true
 }

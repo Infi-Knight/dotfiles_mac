@@ -31,6 +31,9 @@ Plug 'michaeljsmith/vim-indent-object' " Indent text object - ai, ii, aI, iI
 Plug 'kana/vim-textobj-entire' " text object for entire buffer - ae, ai
 Plug 'kana/vim-textobj-line' " text object for a line - al, il
 
+" tailwind
+Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+
 " EasyMotion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -53,6 +56,8 @@ call plug#end() " Initialize plugin system
 " https://marketplace.visualstudio.com/itemdetails?itemName=dsznajder.es7-react-js-snippets
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 
+" https://github.com/Olical/conjure (lisp)
+Plug 'Olical/conjure', {'tag': 'v4.25.0'}
 
 " colorscheme settings
 autocmd vimenter * colorscheme OceanicNext
@@ -146,6 +151,7 @@ let g:coc_global_extensions = [
 	\'coc-git',
 	\'coc-emmet',
     \'coc-spell-checker',
+    \'coc-conjure',
 	\'coc-pyright']
 
 

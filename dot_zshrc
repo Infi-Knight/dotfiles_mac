@@ -312,10 +312,13 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 # export PATH=$PATH:$MONGO_PATH/bin
 
 
+# java
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
 # temporary path
 # export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
 # export CLASSPATH=$CLASSPATH:~/algs4/algs4.jar
-
 
 # ANDROID STUDIO
 # export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -341,7 +344,6 @@ alias gc="git commit"
 
 #JULIA
 # export PATH=$PATH:/Applications/Julia-1.1.app/Contents/Resources/julia/bin/
-
 
 
 alias lg='lazygit'

@@ -311,6 +311,13 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 # export MONGO_PATH=/usr/local/mongodb
 # export PATH=$PATH:$MONGO_PATH/bin
 
+# postgres 
+export PATH="/Library/PostgreSQL/14/bin:$PATH"
+
+# racket - update path accordingly based on version of Dr racket
+# https://marketplace.visualstudio.com/items?itemName=evzen-wybitul.magic-racket
+export PATH="/Applications/Racket v8.3/bin:$PATH"
+
 
 # java
 export PATH="/usr/local/opt/openjdk/bin:$PATH"

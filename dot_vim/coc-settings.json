@@ -12,12 +12,6 @@
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "eslint.nodePath": "./node_modules",
   "vetur.format.defaultFormatter.html": "prettier"
 }

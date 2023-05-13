@@ -3,7 +3,6 @@ let g:mapleader=','
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } 
 Plug 'pangloss/vim-javascript'    " JavaScript support
 "in Vim 8.2 TS is supported OOTB. It is implemented by including the yats.vim plugin into Vim distribution. So I might not need this plugin
 " Plug 'leafgarland/typescript-vim' " TypeScript syntax
@@ -13,7 +12,6 @@ Plug 'peitalin/vim-jsx-typescript' " TSX syntax
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'posva/vim-vue' " vue syntax
 Plug 'mattn/emmet-vim' " emmet
-Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline' " statusline
 Plug 'tpope/vim-fugitive'
 Plug 'mhartington/oceanic-next' " colorscheme
@@ -22,6 +20,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim' " distraction free writing in vim
 Plug 'junegunn/limelight.vim'
+Plug 'Olical/conjure'
 
 Plug 'tpope/vim-commentary' " comment stuff  
 Plug 'kana/vim-textobj-user' " defining your own text objects
@@ -47,10 +46,12 @@ Plug 'plasticboy/vim-markdown' " needs further customizations
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " styled-components, diet-cola, emotion, experimental glamor/styled, and astroturf content in javascript files.
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
 
+" Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end() " Initialize plugin system
+
+" for iterm, you can use different fonts for ASCII and non-ASCII text e.g icons
+Plug 'ryanoasis/vim-devicons'
 
 " ES7 React/Redux/GraphQL/React-Native snippets
 " https://marketplace.visualstudio.com/itemdetails?itemName=dsznajder.es7-react-js-snippets
@@ -58,6 +59,10 @@ Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --f
 
 " https://github.com/Olical/conjure (lisp)
 Plug 'Olical/conjure', {'tag': 'v4.25.0'}
+
+Plug 'github/copilot.vim'
+
+call plug#end() " Initialize plugin system
 
 " colorscheme settings
 autocmd vimenter * colorscheme OceanicNext
@@ -126,16 +131,20 @@ endfunction
 
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 " }}} easymotion
+
+
 " Uncomment these two lines if js, jsx, ts, tsx syntax highlighting goes out
 " of sync.
 " autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 " autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 
 " CoC extensions {{{
 " You need to install eslint-plugin-vue and similar to take advantage of
 " liniting
 let g:coc_global_extensions = [
 	\'coc-tsserver', 
+	\'coc-solargraph', 
 	\'coc-json', 
 	\'coc-vetur', 
 	\'coc-markdownlint', 
@@ -150,7 +159,6 @@ let g:coc_global_extensions = [
 	\'coc-explorer',
 	\'coc-git',
 	\'coc-emmet',
-    \'coc-spell-checker',
     \'coc-conjure',
 	\'coc-pyright']
 
@@ -446,7 +454,3 @@ set termguicolors
 set clipboard+=unnamedplus
 set mouse=a
 syntax on
-
-" TODO: see if ale can be correctly configured with coc to provide stuff like
-" error squiggles
-" TODO: remove trailing whitespace,(possibley using ale)

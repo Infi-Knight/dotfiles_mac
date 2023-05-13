@@ -2,19 +2,26 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# ignore in chezmoi but keep updated using git in local installation
+export ZSH="$HOME/.oh-my-zsh"
 
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  zsh-syntax-highlighting
+    git
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -38,16 +45,16 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 
-
+# User configuration
 #   ---------------------------------------------------------------------------------------
-#   2.  MAKE TERMINAL BETTER
+#   MAKE TERMINAL BETTER
 #   ---------------------------------------------------------------------------------------
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
+# alias less='less -FSRXc'                    # Preferred 'less' implementation
 # cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
@@ -69,6 +76,12 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
+# git alias
+alias gs='git status'
+alias gl='git log'
+alias ga="git add"
+alias gc="git commit"
+
 # colorls alias
 alias lc='colorls'
 
@@ -86,7 +99,7 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 
 
 #   -------------------------------
-#   3.  FILE AND FOLDER MANAGEMENT
+#   FILE AND FOLDER MANAGEMENT
 #   -------------------------------
 
 zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
@@ -135,283 +148,75 @@ EOT
              echo "'$1' is not a valid file"
          fi
     }
+#   ---------------------------------------------------------------------------------------
 
+# Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
 
-#   ---------------------------
-#   4.  SEARCHING
-#   ---------------------------
+# make sure that bat is installed using brew: https://github.com/sharkdp/bat
+# the config file for bat is in .config/bat
+# mouse scrolling is broken, see less --help for options on moving around the output
+alias cat='bat'
 
-alias qfind="find . -name "                 # qfind:    Quickly search for file
-ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
-ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
-ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
-
-
-#   spotlight: Search for a file using MacOS Spotlight's metadata
-#   -----------------------------------------------------------
-    spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
-
-#   ---------------------------
-#   5.  PROCESS MANAGEMENT
-#   ---------------------------
-
-#   findPid: find out the pid of a specified process
-#   -----------------------------------------------------
-#       Note that the command name can be specified via a regex
-#       E.g. findPid '/d$/' finds pids of all processes with names ending in 'd'
-#       Without the 'sudo' it will only find processes of the current user
-#   -----------------------------------------------------
-    findPid () { lsof -t -c "$@" ; }
-
-#   memHogsTop, memHogsPs:  Find memory hogs
-#   -----------------------------------------------------
-    alias memHogsTop='top -l 1 -o rsize | head -20'
-    alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
-
-#   cpuHogs:  Find CPU hogs
-#   -----------------------------------------------------
-    alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
-
-#   topForever:  Continual 'top' listing (every 10 seconds)
-#   -----------------------------------------------------
-    alias topForever='top -l 9999999 -s 10 -o cpu'
-
-#   ttop:  Recommended 'top' invocation to minimize resources
-#   ------------------------------------------------------------
-#       Taken from this macosxhints article
-#       http://www.macosxhints.com/article.php?story=20060816123853639
-#   ------------------------------------------------------------
-    alias ttop="top -R -F -s 10 -o rsize"
-
-#   my_ps: List processes owned by my user:
-#   ------------------------------------------------------------
-    my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-
-
-
-
-
-
-#   ---------------------------
-#   6.  NETWORKING
-#   ---------------------------
-
-alias myip='curl https://api.myip.com'                    # myip:         Public facing IP Address
-alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
-alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
-alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
-alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
-alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
-alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
-alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
-alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
-
-#   ii:  display useful host related informaton
-#   -------------------------------------------------------------------
-    ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
-        echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
-        #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
-        echo
-    }
-
-
-
-
-
-
-#   ---------------------------------------
-#   7.  SYSTEMS OPERATIONS & INFORMATION
-#   ---------------------------------------
-
-alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when booted into single-user
-
-#   cleanupDS:  Recursively delete .DS_Store files
-#   -------------------------------------------------------------------
-    alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
-
-#   finderShowHidden:   Show hidden files in Finder
-#   finderHideHidden:   Hide hidden files in Finder
-#   -------------------------------------------------------------------
-    alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-    alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
-#   cleanupLS:  Clean up LaunchServices to remove duplicates in the "Open With" menu
-#   -----------------------------------------------------------------------------------
-    alias cleanupLS="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-
-#   ---------------------------------------
-#   8.  WEB DEVELOPMENT
-#   ---------------------------------------
-
-alias editHosts='sudo edit /etc/hosts'                  # editHosts:        Edit /etc/hosts file
-alias herr='tail /var/log/httpd/error_log'              # herr:             Tails HTTP error logs
-httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
-
-#   httpDebug:  Download a web page and show info on what took time
-#   -------------------------------------------------------------------
-    httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
-
-
-#   ---------------------------------------
-#   9.  REMINDERS & NOTES
-#   ---------------------------------------
-
-#   remove_disk: spin down unneeded disk
-#   ---------------------------------------
-#   diskutil eject /dev/disk1s3
-
-#   to change the password on an encrypted disk image:
-#   ---------------------------------------
-#   hdiutil chpass /path/to/the/diskimage
-
-#   to mount a read-only disk image as read-write:
-#   ---------------------------------------
-#   hdiutil attach example.dmg -shadow /tmp/example.shadow -noverify
-
-#   mounting a removable drive (of type msdos or hfs)
-#   ---------------------------------------
-#   mkdir /Volumes/Foo
-#   ls /dev/disk*   to find out the device to use in the mount command)
-#   mount -t msdos /dev/disk1s1 /Volumes/Foo
-#   mount -t hfs /dev/disk1s1 /Volumes/Foo
-
-#   to create a file of a given size: /usr/sbin/mkfile or /usr/bin/hdiutil
-#   ---------------------------------------
-#   e.g.: mkfile 10m 10MB.dat
-#   e.g.: hdiutil create -size 10m 10MB.dmg
-#   the above create files that are almost all zeros - if random bytes are desired
-#   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.datn
-
-#--------------------------------------------------------------------------------------------------------------------
-
-
-#   Set Paths
-#   ------------------------------------------------------------
-    export PATH="$PATH:/usr/local/bin/"
-    #export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-
-#   Set Default Editor (change 'Nano' to the editor of your choice)
-#   ------------------------------------------------------------
-    export EDITOR=/usr/local/bin/nvim
-
-#   Set default blocksize for ls, df, du
-#   from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
-#   ------------------------------------------------------------
-    export BLOCKSIZE=1k
-
-# RAVI MONGODB INSTALLATION
-# export MONGO_PATH=/usr/local/mongodb
-# export PATH=$PATH:$MONGO_PATH/bin
-
-# postgres 
-export PATH="/Library/PostgreSQL/14/bin:$PATH"
-
-# racket - update path accordingly based on version of Dr racket
-# https://marketplace.visualstudio.com/items?itemName=evzen-wybitul.magic-racket
-export PATH="/Applications/Racket v8.3/bin:$PATH"
-
-
-# java
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-
-# temporary path
-# export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
-# export CLASSPATH=$CLASSPATH:~/algs4/algs4.jar
-
-# ANDROID STUDIO
-# export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_HOME/tools
-# export PATH=$PATH:$ANDROID_HOME/tools/bin
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# git alias
-alias gs='git status'
-alias gl='git log'
-alias ga="git add"
-alias gc="git commit"
-
-# mysql path
-# export PATH=$PATH:/usr/local/mysql/bin/
-
-# haskell
-# export PATH="$HOME/Library/Haskell/bin:$PATH"
-
-#GOPATH
-# export GOPATH=$HOME/go
-# export PATH=$PATH:$(go env GOPATH)/bin
-
-#JULIA
-# export PATH=$PATH:/Applications/Julia-1.1.app/Contents/Resources/julia/bin/
-
-
+# lazygit, install and keep updated using brew
 alias lg='lazygit'
 
-export PATH=/Users/ravisoni/.local/bin:$PATH
+# fnm config, install and keep updated using brew
+eval "$(fnm env --use-on-cd)"
 
-# zoxide
+# zoxide, install using brew
 eval "$(zoxide init zsh)"
 
-# fnm
-eval "$(fnm env)"
+# rbenv, installed using brew
+eval "$(rbenv init - zsh)"
 
-# better python version management using pyenv
-# read https://github.com/pyenv/pyenv#homebrew-on-macos and
-# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-# also read:
-# https://opensource.com/article/19/5/python-3-default-mac
-# https://opensource.com/article/20/4/pyenv
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-PATH=$(pyenv root)/shims:$PATH
-
-# make sure that bat is installed: https://github.com/sharkdp/bat
-alias cat='bat'
-export BAT_THEME="TwoDark"
-
-# # nvm 
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# # place this after nvm initialization!
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   local node_version="$(nvm version)"
-#   local nvmrc_path="$(nvm_find_nvmrc)"
-
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-#   elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
-
-
-# fzf settings
+# fzf settings, keep updated using git as has been installed in .fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git' # make sure fd is installed using brew
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
   --height 75% --multi --reverse
   --bind ctrl-f:page-down,ctrl-b:page-up
 '
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+
+# pnpm
+export PNPM_HOME="/Users/ravisoni/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include" 
+
+eval "$(github-copilot-cli alias -- "$0")"

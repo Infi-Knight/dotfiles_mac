@@ -220,3 +220,10 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include" 
 
 eval "$(github-copilot-cli alias -- "$0")"
+
+# bun completions
+[ -s "/Users/ravisoni/.bun/_bun" ] && source "/Users/ravisoni/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
